@@ -10,17 +10,17 @@
 
 (function ($, undefined) {
 
-    $("head").append("<style>\
-.idea-clear{float:none;}\
-#idea-smileys{display:block; margin-top: 30px;}\
-.emoticon-block{display: inline-block;width: 32px;height: 32px;float: left;white-space: normal;margin: 2px;}\
-.emoticon-block:hover{border:1px solid red;box-sizing: border-box;}\
-.emoticon-block div{display: none;}\
-.emoticon-block img{width:30px !important; height: 30px !important; padding:0 !important;}\
-.smileys-selection{width: 800px !important;}\
-.idea-smileys-container:{left:-400px !important;}\
-#idea-out{float: right;margin-top: 20px;font-style: italic;}\
-                  </style>");
+    $("head").append("<style>" +
+        ".idea-clear{float:none;}" +
+        "#idea-smileys{display:block; margin-top: 30px;}" +
+        ".emoticon-block{display: inline-block;width: 32px;height: 32px;float: left;white-space: normal;margin: 2px;}" +
+        ".emoticon-block:hover{border:1px solid red;box-sizing: border-box;}" +
+        ".emoticon-block div{display: none;}" +
+        ".emoticon-block img{width:30px !important; height: 30px !important; padding:0 !important;}" +
+        ".smileys-selection{width: 800px !important;}" +
+        ".idea-smileys-container:{left:-400px !important;}" +
+        "#idea-out{float: right;margin-top: 20px;font-style: italic;}" +
+        "</style>");
 
     var init = function () {
         $(".smileys-selection").closest(".hc-tooltip").addClass("idea-smileys-container");
@@ -36,6 +36,8 @@
         })
 
         document.addEventListener('copy', function (e) {
+            if ($("#idea-smileys .emoticon-block:hover").length === 0)
+                return;
             var textToPutOnClipboard = $("#idea-smileys .emoticon-block:hover").attr("data-clipboard-text");
             if (isIe) {
                 window.clipboardData.setData('Text', textToPutOnClipboard);
@@ -47,10 +49,9 @@
         });
     }
 
-    var html = '\
-<div class="idea-clear"/>\
-<div id="idea-smileys">\
-    <div class="emoticon-block" title="Click to copy (allthethings) to your clipboard." data-clipboard-text="(allthethings)">						\
+    var html = '<div class="idea-clear"/>' +
+        '<div id="idea-smileys">' +
+        '<div class="emoticon-block" title="Click to copy (allthethings) to your clipboard." data-clipboard-text="(allthethings)">					\
       <img src="https://dujrsrsgsd3nh.cloudfront.net/img/emoticons/allthethings-1414024836.png" width="25" height="25">                             \
       <div>(allthethings)</div>                                                                                                                     \
     </div>                                                                                                                                          \
